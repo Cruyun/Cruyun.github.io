@@ -28,7 +28,7 @@
 层叠样式表（英">
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/4938344-a96b36f6685bd9a2.gif?imageMogr2/auto-orient/strip">
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/4938344-604e0f32c9f5b2b6.gif?imageMogr2/auto-orient/strip">
-<meta property="og:updated_time" content="2017-07-26T12:00:43.000Z">
+<meta property="og:updated_time" content="2017-07-26T12:11:12.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="走进Web前端 | Cruyun's Blog">
 <meta name="twitter:description" content="欢迎各位萌新（and 隐藏的dalao）戳进这里啦，在前端入门我们首先从HTML和CSS开始，什么是HTML和CSS呢？
@@ -292,7 +292,7 @@ classes that you can use:
 <p>顺便给刚才的button也加上过渡</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">.button .shift &#123;</div><div class="line">	  transition: all 1.1s ease;</div><div class="line">&#125;</div><div class="line">.button &#123;</div><div class="line">    transition: border 1s ease, color .6s ease, background 3s ease;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>然后.mask超过button的部分设置为不可见，在<code>.button</code>添加<code>overflow: hidden;</code>属性。这样我们就得到一个漂亮的Ghost Button。</p>
-<p>为了兼容更多的浏览器，<code>transform</code>和<code>transition</code>属性要多加带有一行-webkit-前缀，例如</p>
+<p>为了兼容更多的浏览器（比如Chrome、Safari），<code>transform</code>和<code>transition</code>属性要多加带有一行-webkit-前缀，例如</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">.button &#123;</div><div class="line">    -webkit-transition: border 1s ease, color .6s ease, background 3s ease;</div><div class="line">    transition: border 1s ease, color .6s ease, background 3s ease;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <hr>
 <p>最后我做了一点美化，让button放置在页面的中央，设置了button的最大宽度<code>max-width: 270px;</code>（防止拉伸浏览器的时候效果不够），并且将<code>transition</code>属性中的<code>ease</code>值换成了贝塞尔曲线<code>cubic-bezier(0.19,1,.22,1)</code>就得到了文章开头的效果。</p>
