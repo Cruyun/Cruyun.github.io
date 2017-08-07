@@ -35,7 +35,7 @@ clone/新建 项目仓库
 clone/新建 项目仓库
 在项目">
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/4938344-490797290388037f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:updated_time" content="2017-08-06T17:23:18.000Z">
+<meta property="og:updated_time" content="2017-08-07T16:42:46.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="木犀博客 前端开发过程 | Cruyun's Blog">
 <meta name="twitter:description" content="前言：木犀博客是我的第二个团队项目，这篇博客记录一些从搭建环境到最终完成的过程中我遇到的问题及其解决方案、各种发现与总结(我的进度簿里面也会记录），持续更新。
@@ -282,16 +282,15 @@ classes that you can use:
 </li>
 <li><p>content: 在父组件，向后台发送请求拿到博客的所有参数，并且传给子组件。翻页的话，子组件里面要保存总页数和当前页数，点击向上或者向下翻页，当前页数改变传递给父组件，父组件收到之后重新拉取数据。【当前页数】是父子组件的双向传递，子-&gt;父 使用event emitter 子组件触发事件，父组件监听。</p>
 </li>
+<li><p>web\android..等页面渲染不出来，因为template里面include svg.html,svg的id也命名为web/android..就冲突了</p>
+</li>
 </ul>
 <p><strong>遇到的未解决的问题和未完成的功能有：</strong></p>
 <ul>
-<li><p>用a标签跳转到second页面，那second页面要fetch数据，怎么拿到id呢: 从URL里面拿，window.location拿到URL，用split处理字符串获得id，另外比如博客首页（所有分类）第一页的API是/api/v2.0/1，web分类（类别为1）第一页的API是/api/v2.0/1/1，格式不一样还需要判断一下。</p>
-</li>
-<li><p>tags组件里面的tag是不定数量不定字符长度的，要实现自适应。</p>
-</li>
-<li>新页面又是一片空白orz</li>
+<li>用a标签跳转到second页面，那second页面要fetch数据，怎么拿到id呢: 从URL里面拿，window.location拿到URL，用split处理字符串获得id</li>
+<li>tags组件里面的tag是不定数量不定字符长度的，要实现自适应。</li>
 </ul>
-<p>—– 8.7更新 —-</p>
+<p>—– 8.8更新 —-</p>
 
   </section>
 
