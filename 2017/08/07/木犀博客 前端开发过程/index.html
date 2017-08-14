@@ -35,7 +35,7 @@ clone/新建 项目仓库
 clone/新建 项目仓库
 在项目">
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/4938344-490797290388037f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:updated_time" content="2017-08-08T16:34:51.000Z">
+<meta property="og:updated_time" content="2017-08-14T12:29:16.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="木犀博客 前端开发过程 | Cruyun's Blog">
 <meta name="twitter:description" content="前言：木犀博客是我的第二个团队项目，这篇博客记录一些从搭建环境到最终完成的过程中我遇到的问题及其解决方案、各种发现与总结(我的进度簿里面也会记录），持续更新。
@@ -249,13 +249,11 @@ classes that you can use:
 <p><strong>大概套路：</strong><br>clone <a href="https://github.com/Muxi-Studio/ninja" target="_blank" rel="external">ninja</a>下来</p>
 <p>clone/新建 项目仓库</p>
 <p>在项目里</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install -g ninja_cli</div></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">touch ninja.conf.js</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">npm install -g ninja_cli</div><div class="line">touch ninja.conf.js</div></pre></td></tr></table></figure>
 <p>在ninja里面</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm link</div></pre></td></tr></table></figure>
 <p>在项目里</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ninja2 init my-project webpack-vue</div></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ninja2 start</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">ninja2 init my-project webpack-vue</div><div class="line">ninja2 start</div></pre></td></tr></table></figure>
 <p>要把新生成的文件拿出来。<br>可能遇到的错：</p>
 <ul>
 <li>Uncaught TypeError: $export is not a function，解决：exclude: /node_modules/ after loader: ‘babel-loader’</li>
@@ -284,13 +282,21 @@ classes that you can use:
 </li>
 <li><p>web/android..等页面渲染不出来，因为template里面include svg.html,svg的id也命名为web/android..就冲突了</p>
 </li>
+<li><p>用a标签，<code>:href=&quot;&quot;</code>跳转到second页面，那second页面要fetch数据，怎么拿到id呢: 从URL里面拿，window.location拿到URL，用<code>split(&#39;/&#39;)</code>处理字符串获得id</p>
+</li>
 </ul>
-<p><strong>遇到的未解决的问题和未完成的功能有：</strong></p>
+<h3 id="二级页面：查看一篇博客文章"><a href="#二级页面：查看一篇博客文章" class="headerlink" title="二级页面：查看一篇博客文章"></a>二级页面：查看一篇博客文章</h3><p><strong>这个页面我分为以下几个部分：</strong></p>
 <ul>
-<li>用a标签跳转到second页面，那second页面要fetch数据，怎么拿到id呢: 从URL里面拿，window.location拿到URL，用split处理字符串获得id</li>
-<li>tags组件里面的tag是不定数量不定字符长度的，要实现自适应。</li>
+<li>组件：导航栏navigation（根据实际需求改成了HOME WEB DESIGN ANDROID PRODUCT ABOUT)</li>
+<li>博客文章</li>
+<li>组件：右上角的登录注册sign</li>
+<li>组件：评论框CommentBox</li>
 </ul>
-<p>—– 8.8更新 —-</p>
+<p><strong>主要点</strong></p>
+<ul>
+<li>评论框组件：本来想评论成功之后直接将评论框的内容push到comments数组里面，但是还需要获取用户的ID和发布评论的时间，就重新fetch所有评论的数据</li>
+</ul>
+<p>—– 8.14更新 —-</p>
 
   </section>
 
