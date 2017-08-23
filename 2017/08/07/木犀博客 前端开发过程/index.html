@@ -35,7 +35,7 @@ clone/新建 项目仓库
 clone/新建 项目仓库
 在项目">
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/4938344-490797290388037f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:updated_time" content="2017-08-14T12:29:16.000Z">
+<meta property="og:updated_time" content="2017-08-23T11:42:13.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="木犀博客 前端开发过程 | Cruyun's Blog">
 <meta name="twitter:description" content="前言：木犀博客是我的第二个团队项目，这篇博客记录一些从搭建环境到最终完成的过程中我遇到的问题及其解决方案、各种发现与总结(我的进度簿里面也会记录），持续更新。
@@ -294,9 +294,23 @@ classes that you can use:
 </ul>
 <p><strong>主要点</strong></p>
 <ul>
-<li>评论框组件：本来想评论成功之后直接将评论框的内容push到comments数组里面，但是还需要获取用户的ID和发布评论的时间，就重新fetch所有评论的数据</li>
+<li>评论框组件：本来想评论成功之后直接将评论框的内容push到comments数组里面，但是还需要获取用户的ID和发布评论的时间，就重新fetch所有评论的数据。所以在评论框组件里面触发click事件提交新评论，<code>this.$parent.fetchCommet()</code>调用父组件的方法重新拉取评论列表</li>
+<li>发评论需要token</li>
 </ul>
-<p>—– 8.14更新 —-</p>
+<h3 id="添加一篇博客文章"><a href="#添加一篇博客文章" class="headerlink" title="添加一篇博客文章"></a>添加一篇博客文章</h3><p><strong>这个页面我分为以下几个部分：</strong></p>
+<ul>
+<li>组件：导航栏navigation（根据实际需求改成了HOME WEB DESIGN ANDROID PRODUCT ABOUT)</li>
+<li>编辑博客文章</li>
+<li>组件：右上角的登录注册sign</li>
+</ul>
+<p><strong>主要点</strong></p>
+<ul>
+<li>选择组别：每个<code>input</code>有个各自的value，再用<code>v-model=&quot;group&quot;</code>保存下来</li>
+<li>添加tag：类似于一个TODO LIST，用<code>v-for</code>显示tag，input框里输入tag，按回车键触发事件用<code>@key.enterup=&quot;addTag&quot;</code>。需要注意的是，这里不仅仅只有<code>tag</code>和<code>tags[]</code>，否则你删除tag的时候无论点击哪一个delete，都会作用在最新添加的tag。因为tag一直在更新，调用removeTag()的时候，传入的参数是最新的tag。所以需要另一个变量newTag，让添加进数组里面的tag为newTag，这样子tags[]里面的元素是tag，而调用removeTag()时传入的参数是newTag，这样子<code>this.tags.indexOf(tag)</code>就能找到对应的tag。</li>
+</ul>
+<p>两个函数如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">addTag() &#123;</div><div class="line">     var tag = this.newTag.trim();</div><div class="line">     if (tag &amp;&amp; this.tags.length &lt; 5) &#123;</div><div class="line">        this.tags.push(tag);</div><div class="line">        this.newTag = &quot;&quot;;</div><div class="line">     &#125; else if (this.tags.length &gt;= 5) &#123;</div><div class="line">        this.tip = true</div><div class="line">     &#125;</div><div class="line"> &#125;,</div><div class="line">removeTag(tag) &#123;</div><div class="line">     var index = this.tags.indexOf(tag);</div><div class="line">     this.tags.splice(index, 1);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>—– 8.20更新 —-</p>
 
   </section>
 
