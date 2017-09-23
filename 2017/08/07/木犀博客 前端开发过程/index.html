@@ -38,7 +38,7 @@ clone/新建 项目仓库
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/4938344-569ad9fa8a0c3ed4.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/4938344-d41ab53899f617eb.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/4938344-e463517aa7e5ce1c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:updated_time" content="2017-08-30T09:29:34.000Z">
+<meta property="og:updated_time" content="2017-09-23T16:19:24.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="木犀博客 前端开发过程 | Cruyun's Blog">
 <meta name="twitter:description" content="前言：木犀博客是我的第二个团队项目，这篇博客记录一些从搭建环境到最终完成的过程中我遇到的问题及其解决方案、各种发现与总结(我的进度簿里面也会记录），持续更新。
@@ -284,6 +284,9 @@ classes that you can use:
 </li>
 <li><p>用a标签，<code>:href=&quot;&quot;</code>跳转到second页面，那second页面要fetch数据，怎么拿到id呢: 从URL里面拿，window.location拿到URL，用<code>split(&#39;/&#39;)</code>处理字符串获得id</p>
 </li>
+<li><p>hover博客的box是出现半透明的蒙版和“阅读全文”的字：使用伪元素<code>:before</code>或者<code>:after</code>，控制hover的时候伪元素的样式。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line">.content_box &#123;</div><div class="line">	width: 100%;</div><div class="line">	margin-bottom: 30px;</div><div class="line">	font-size: 0;</div><div class="line">	background-color: $white;</div><div class="line">&#125;</div><div class="line">.mask &#123;</div><div class="line">	position: relative;</div><div class="line">	width: 100%;</div><div class="line">	height: 210px;</div><div class="line">&#125;</div><div class="line">.mask:before &#123;</div><div class="line">	content: &apos;阅读全文&apos;;</div><div class="line">	text-align: center;</div><div class="line">	line-height: 210px;</div><div class="line">	display: block;</div><div class="line">	width: 600px;</div><div class="line">	position: absolute;</div><div class="line">	top: 0;</div><div class="line">&#125;</div><div class="line">.mask:hover::before &#123;</div><div class="line">	background-color:rgba(82, 139, 139, 0.7);</div><div class="line">	font-size: 24px;</div><div class="line">	color: $white;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
 <li><p>返回对应分类的博客不能用一个单页多个router去写，抽出来一个组件放在多个页面，根据类别拉取不同的数据</p>
 </li>
 </ol>
@@ -348,9 +351,7 @@ classes that you can use:
 </ul>
 </li>
 </ol>
-<p>————————— 8.30更新 ——————–</p>
-<p>————-以上任何解决问题的方法都有可能在code review之后打脸—–</p>
-<p>————- 我是小菜鸡，要听大佬的教导 ————</p>
+<p>————————— 9.23 更新 ——————–</p>
 
   </section>
 
