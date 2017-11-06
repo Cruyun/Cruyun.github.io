@@ -7,7 +7,7 @@
     
 
     <title>
-      归档 
+      CSAPP学习笔记_系统级 I/O | Cruyun&#39;s Blog 
     </title>
 
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
@@ -16,13 +16,52 @@
     
     
 
-    <meta property="og:type" content="website">
-<meta property="og:title" content="归档">
-<meta property="og:url" content="https://Cruyun.github.io/archive/index.html">
+    <meta name="description" content="文件Unix I/O
+创建的每个进程开始有三个打开的文件：标准输入 stdin（描述符为0）、标准输出 stdout（描述符为1）、标准错误 stderr（描述符为2）
+Linux文件类型：
+
+普通文件 regular file
+
+文本文件 text file 
+二进制文件 binary file
+
+
+目录 diretory
+
+套接字 socket：用来与另一个进程进行跨网络通行的文件，从Linu">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CSAPP学习笔记_系统级 I/O | Cruyun's Blog">
+<meta property="og:url" content="https://Cruyun.github.io/2017/11/06/读CSAPP_系统级 I:O /index.html">
 <meta property="og:site_name" content="Cruyun's Blog">
-<meta property="og:updated_time" content="2017-04-23T05:56:32.000Z">
+<meta property="og:description" content="文件Unix I/O
+创建的每个进程开始有三个打开的文件：标准输入 stdin（描述符为0）、标准输出 stdout（描述符为1）、标准错误 stderr（描述符为2）
+Linux文件类型：
+
+普通文件 regular file
+
+文本文件 text file 
+二进制文件 binary file
+
+
+目录 diretory
+
+套接字 socket：用来与另一个进程进行跨网络通行的文件，从Linu">
+<meta property="og:updated_time" content="2017-11-06T14:49:57.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="归档">
+<meta name="twitter:title" content="CSAPP学习笔记_系统级 I/O | Cruyun's Blog">
+<meta name="twitter:description" content="文件Unix I/O
+创建的每个进程开始有三个打开的文件：标准输入 stdin（描述符为0）、标准输出 stdout（描述符为1）、标准错误 stderr（描述符为2）
+Linux文件类型：
+
+普通文件 regular file
+
+文本文件 text file 
+二进制文件 binary file
+
+
+目录 diretory
+
+套接字 socket：用来与另一个进程进行跨网络通行的文件，从Linu">
     
     
     
@@ -193,56 +232,63 @@ classes that you can use:
 
   <header class="post-header">
     
-    <h1 class="post-title">归档</h1>
+    <h1 class="post-title">CSAPP学习笔记_系统级 I/O</h1>
 
-    <section id="post-content" class="article-content post">
-        
-    </section>
+    
 
+    <div class="post-meta">
+      <time datetime="2017-11-06" class="post-meta__date date">2017-11-06</time> 
+
+      <span class="post-meta__tags tags">
+
+          
+
+          
+             &#8226; 标签:
+            <font class="tags">
+              <a class="tags-link" href="/tags/CSAPP/">CSAPP</a>
+            </font>
+          
+
+      </span>
+    </div>
+    
+    
 
   </header>
 
+  <section id="post-content" class="article-content post">
+    <h3 id="文件"><a href="#文件" class="headerlink" title="文件"></a>文件</h3><p><strong>Unix I/O</strong></p>
+<p>创建的每个进程开始有三个打开的文件：标准输入 stdin（描述符为0）、标准输出 stdout（描述符为1）、标准错误 stderr（描述符为2）</p>
+<p><strong>Linux文件类型：</strong></p>
+<ul>
+<li><p>普通文件 regular file</p>
+<ul>
+<li>文本文件 text file </li>
+<li>二进制文件 binary file</li>
+</ul>
+</li>
+<li><p>目录 diretory</p>
+</li>
+<li>套接字 socket：用来与另一个进程进行跨网络通行的文件，从Linux角度来看，是一个有相应描述符的打开文件</li>
+</ul>
+<p><strong>open函数</strong></p>
+<p>将filename转换为一个文件描述符，并且返回描述符数字（总是在进程中当前没有打开的最小描述符）。</p>
+<p><code>int open(char *filename, int flags, mode_t mode)</code>成功则返回新文件描述符（正整数），出错为-1。所以用户通过 open 能够打开的文件得到的文件描述符的最小编号是3。</p>
+<p>flags参数是一个或更多位掩码的或，是用于指定打开文件操作模式的枚举常量。<br>mode_t mode是文件权限标志，mode_t类型指一个无符号八进制数，mode称为umask变量。</p>
+<p><strong>RIO提供的读写函数</strong></p>
+<p>RIO（Robust I/O，健壮的 I/O)包。RIO包中有专门的数据结构为每一个文件描述符都分配了相应的独立的读缓冲区，这样不同线程对不同文件描述符的读访问也就不会出现并发问题。</p>
+<ol>
+<li>无缓冲的输入输出函数：rio_readn、rio_writen</li>
+</ol>
+
+  </section>
+
+  
+  
 </article>
 
-<div class="archive-meta">
 
-
-
-
-    <h3>标签</h3>
-    <div class="tagslist">
-        
-            
-                <span><a href="/tags/CSS/" title="CSS">CSS<sup>3</sup></a></span>
-            
-        
-            
-                <span><a href="/tags/JavaScript/" title="JavaScript">JavaScript<sup>1</sup></a></span>
-            
-        
-            
-                <span><a href="/tags/CSAPP-汇编/" title="CSAPP 汇编">CSAPP 汇编<sup>1</sup></a></span>
-            
-        
-            
-                <span><a href="/tags/Projects/" title="Projects">Projects<sup>1</sup></a></span>
-            
-        
-            
-                <span><a href="/tags/CSAPP/" title="CSAPP">CSAPP<sup>1</sup></a></span>
-            
-        
-    </div>
-
-
-
-    <h3>归档</h3>
-    <div class="archiveslist">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">November 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">August 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">July 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">May 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">April 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a><span class="archive-list-count">1</span></li></ul>
-    </div>
-
-
-</div>
             <footer class="footer">
 
     <span class="footer__copyright">&copy; 2014-2015. | 由<a href="https://hexo.io/">Hexo</a>强力驱动 | 主题<a href="https://github.com/someus/huno">Huno</a></span>
@@ -270,6 +316,18 @@ classes that you can use:
 
 
     
+
+    <script src="/js/awesome-toc.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $.awesome_toc({
+                overlay: true,
+                contentId: "post-content",
+            });
+        });
+    </script>
+
+
     
     
     <!--kill ie6 -->
