@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+
+    
+
+    <title>
+      字符串模式匹配之BF算法和KMP算法 | Cruyun&#39;s Blog 
+    </title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    
+      <meta name="author" content="Cruyun">
+    
+    
+
+    <meta name="description" content="BF算法BF(Brute-Force)算法是串的朴素模式匹配算法，它的基本思路是从主串的第一个字符开始，逐一与子串的第一个字符比较，若匹配，则继续对后续字符进行比较，若不匹配，则从主串的第二个字符开始重新与子串的第一个字符进行比较，重复执行，直到子串的每个字符一次与主串的一个连续的字符序列相等为止。如果不能在主串中找到与子串相同的字符序列，则匹配失败。
+BF算法是最原始、暴力的求解，也是其他算法的">
+<meta property="og:type" content="article">
+<meta property="og:title" content="字符串模式匹配之BF算法和KMP算法 | Cruyun's Blog">
+<meta property="og:url" content="https://Cruyun.github.io/2017/11/09/字符串模式匹配之BF算法和KMP算法/index.html">
+<meta property="og:site_name" content="Cruyun's Blog">
+<meta property="og:description" content="BF算法BF(Brute-Force)算法是串的朴素模式匹配算法，它的基本思路是从主串的第一个字符开始，逐一与子串的第一个字符比较，若匹配，则继续对后续字符进行比较，若不匹配，则从主串的第二个字符开始重新与子串的第一个字符进行比较，重复执行，直到子串的每个字符一次与主串的一个连续的字符序列相等为止。如果不能在主串中找到与子串相同的字符序列，则匹配失败。
+BF算法是最原始、暴力的求解，也是其他算法的">
+<meta property="og:updated_time" content="2017-11-09T15:16:38.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="字符串模式匹配之BF算法和KMP算法 | Cruyun's Blog">
+<meta name="twitter:description" content="BF算法BF(Brute-Force)算法是串的朴素模式匹配算法，它的基本思路是从主串的第一个字符开始，逐一与子串的第一个字符比较，若匹配，则继续对后续字符进行比较，若不匹配，则从主串的第二个字符开始重新与子串的第一个字符进行比较，重复执行，直到子串的每个字符一次与主串的一个连续的字符序列相等为止。如果不能在主串中找到与子串相同的字符序列，则匹配失败。
+BF算法是最原始、暴力的求解，也是其他算法的">
+    
+    
+    
+      <link rel="icon" type="image/x-icon" href="/huno/favicon.ico">
+    
+    <link rel="stylesheet" href="/css/uno.css">
+    <link rel="stylesheet" href="/css/highlight.css">
+    <link rel="stylesheet" href="/css/archive.css">
+    <link rel="stylesheet" href="/css/china-social-icon.css">
+
+</head>
+<body>
+
+    <span class="mobile btn-mobile-menu">
+        <i class="icon icon-list btn-mobile-menu__icon"></i>
+        <i class="icon icon-x-circle btn-mobile-close__icon hidden"></i>
+    </span>
+
+    
+
+<header class="panel-cover panel-cover--collapsed">
+
+
+  <div class="panel-main">
+
+  
+    <div class="panel-main__inner panel-inverted">
+    <div class="panel-main__content">
+
+        
+        <a href="/" title="link to homepage for Cruyun&#39;s Blog"><img src="https://avatars2.githubusercontent.com/u/24372759?v=3&amp;s=460" width="80" alt="Cruyun&#39;s Blog logo" class="panel-cover__logo logo" /></a>
+        
+
+        <h1 class="panel-cover__title panel-title"><a href="/" title="link to homepage">Cruyun&#39;s Blog</a></h1>
+        <hr class="panel-cover__divider" />
+
+        
+        <p class="panel-cover__description">
+          Keep going
+        </p>
+        <hr class="panel-cover__divider panel-cover__divider--secondary" />
+        
+
+        <div class="navigation-wrapper">
+
+          <nav class="cover-navigation cover-navigation--primary">
+            <ul class="navigation">
+
+              
+                
+                <li class="navigation__item"><a href="/#blog" title="" class="blog-button">首页</a></li>
+              
+                
+                <li class="navigation__item"><a href="/about" title="" class="">关于</a></li>
+              
+                
+                <li class="navigation__item"><a href="/archive" title="" class="">归档</a></li>
+              
+
+            </ul>
+          </nav>
+
+          <!-- ----------------------------
+To add a new social icon simply duplicate one of the list items from below
+and change the class in the <i> tag to match the desired social network
+and then add your link to the <a>. Here is a full list of social network
+classes that you can use:
+
+    icon-social-500px
+    icon-social-behance
+    icon-social-delicious
+    icon-social-designer-news
+    icon-social-deviant-art
+    icon-social-digg
+    icon-social-dribbble
+    icon-social-facebook
+    icon-social-flickr
+    icon-social-forrst
+    icon-social-foursquare
+    icon-social-github
+    icon-social-google-plus
+    icon-social-hi5
+    icon-social-instagram
+    icon-social-lastfm
+    icon-social-linkedin
+    icon-social-medium
+    icon-social-myspace
+    icon-social-path
+    icon-social-pinterest
+    icon-social-rdio
+    icon-social-reddit
+    icon-social-skype
+    icon-social-spotify
+    icon-social-stack-overflow
+    icon-social-steam
+    icon-social-stumbleupon
+    icon-social-treehouse
+    icon-social-tumblr
+    icon-social-twitter
+    icon-social-vimeo
+    icon-social-xbox
+    icon-social-yelp
+    icon-social-youtube
+    icon-social-zerply
+    icon-mail
+
+-------------------------------->
+
+<!-- add social info here -->
+
+
+
+<nav class="cover-navigation navigation--social">
+  <ul class="navigation">
+
+    
+      <!-- Github -->
+      <li class="navigation__item">
+        <a href="https://github.com/Cruyun" title="Huno on GitHub">
+          <i class='icon icon-social-github'></i>
+          <span class="label">GitHub</span>
+        </a>
+      </li>
+    
+
+    <!-- China social icon -->
+    <!--
+
+      <li class="navigation__item">
+        <a href="" title="">
+          <i class='icon cs-icon-douban'></i>
+          <span class="label">Douban</span>
+        </a>
+      </li>
+
+      <li class="navigation__item">
+        <a href="" title="">
+          <i class='icon cs-icon-weibo'></i>
+          <span class="label">Weibo</span>
+        </a>
+      </li>
+
+    -->
+
+
+
+  </ul>
+</nav>
+
+
+
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="panel-cover--overlay"></div>
+  </div>
+</header>
+
+    <div class="content-wrapper">
+        <div class="content-wrapper__inner entry">
+            
+
+<article class="post-container post-container--single">
+
+  <header class="post-header">
+    
+    <h1 class="post-title">字符串模式匹配之BF算法和KMP算法</h1>
+
+    
+
+    <div class="post-meta">
+      <time datetime="2017-11-09" class="post-meta__date date">2017-11-09</time> 
+
+      <span class="post-meta__tags tags">
+
+          
+
+          
+             &#8226; 标签:
+            <font class="tags">
+              <a class="tags-link" href="/tags/算法/">算法</a>
+            </font>
+          
+
+      </span>
+    </div>
+    
+    
+
+  </header>
+
+  <section id="post-content" class="article-content post">
+    <h2 id="BF算法"><a href="#BF算法" class="headerlink" title="BF算法"></a>BF算法</h2><p>BF(Brute-Force)算法是串的朴素模式匹配算法，它的基本思路是<strong>从主串的第一个字符开始，逐一与子串的第一个字符比较，若匹配，则继续对后续字符进行比较，若不匹配，则从主串的第二个字符开始重新与子串的第一个字符进行比较，重复执行，直到子串的每个字符一次与主串的一个连续的字符序列相等为止</strong>。如果不能在主串中找到与子串相同的字符序列，则匹配失败。</p>
+<p>BF算法是最原始、暴力的求解，也是其他算法的基础。</p>
+<p>这里不细讲，直接上demo代码。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">int index(string &amp;T, string &amp;P,int pos)  </div><div class="line">&#123;  </div><div class="line">    int i = pos;  //主串当前正待比较的位置，初始为pos</div><div class="line">    int j = 0;   //子串当前正待比较的位置，初始为0  </div><div class="line">    int T_len = T.size();  </div><div class="line">    int P_len = P.size(); </div><div class="line">          </div><div class="line">    while (i &lt; T_len &amp;&amp; j &lt; P_len) &#123;  </div><div class="line">        if(T[i] == P[j]) &#123;  //如果当前字符相同，则继续向后比较       </div><div class="line">            i++;  </div><div class="line">            j++;  </div><div class="line">        &#125; else &#123; </div><div class="line">            i = i-j+1;  </div><div class="line">            j = 0;  </div><div class="line">        &#125;  </div><div class="line">    &#125;  </div><div class="line">  </div><div class="line">    if(j &gt;= P_len) &#123;</div><div class="line">        return i - P_len;  </div><div class="line">    &#125; else &#123;</div><div class="line">        return -1;  </div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="KMP算法"><a href="#KMP算法" class="headerlink" title="KMP算法"></a>KMP算法</h2><p>KMP算法全称是Knuth–Morris–Pratt string searching algorithm，是由三个人于1977年共同发表的。</p>
+<h3 id="KMP算法的基本思想"><a href="#KMP算法的基本思想" class="headerlink" title="KMP算法的基本思想"></a>KMP算法的基本思想</h3><p>相比KMP算法，BF算法的时间复杂度大得多，是因为索引指针的回溯。与BF算法不同，当出现当前字符不相同时，KMP算法不需要回溯指针，而是利用已经得到的匹配结果将子串向右滑动到尽可能远的距离，继续进行比较。</p>
+<p>KMP的算法流程：</p>
+<ul>
+<li>假设主串S匹配到i位置，子串（模式串）匹配到j位置<ul>
+<li>如果j == -1 或当前字符匹配成功（S[i] == P[j])，令i++，j++，继续往后匹配</li>
+<li>如果j != -1，且当前字符匹配失败（S[i] != P[j])，令i不变, j = next[j]。即子串相对于主串向右移动了j - next[j]位。</li>
+</ul>
+</li>
+</ul>
+<p>下面以两个字符串匹配来分析：</p>
+<p>主串：ababcabcacbab</p>
+<p>子串：abcac</p>
+<ul>
+<li>第一趟：i=2和j=2出不匹配。</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">主串</th>
+<th style="text-align:center">a</th>
+<th style="text-align:center">b</th>
+<th style="text-align:center">【a】</th>
+<th style="text-align:center">b</th>
+<th style="text-align:center">c</th>
+<th style="text-align:center">a</th>
+<th style="text-align:center">b</th>
+<th style="text-align:center">c</th>
+<th style="text-align:center">a</th>
+<th style="text-align:center">c</th>
+<th style="text-align:center">b</th>
+<th style="text-align:center">a</th>
+<th style="text-align:center">b</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">子串</td>
+<td style="text-align:center">a</td>
+<td style="text-align:center">b</td>
+<td style="text-align:center">【c】</td>
+<td style="text-align:center">a</td>
+<td style="text-align:center">c</td>
+</tr>
+<tr>
+<td style="text-align:center">索引</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">2</td>
+<td style="text-align:center">3</td>
+<td style="text-align:center">4</td>
+<td style="text-align:center">5</td>
+<td style="text-align:center">6</td>
+<td style="text-align:center">7</td>
+<td style="text-align:center">8</td>
+<td style="text-align:center">9</td>
+<td style="text-align:center">10</td>
+<td style="text-align:center">11</td>
+<td style="text-align:center">12</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>第二趟：i不变，令子串向右移动（j回退）。此趟比较从 i=2 和 j=0 开始，在 i=6 和 j=4 处出现不匹配。</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">主串</th>
+<th style="text-align:center">a</th>
+<th style="text-align:center">b</th>
+<th style="text-align:center">a</th>
+<th style="text-align:center">b</th>
+<th style="text-align:center">c</th>
+<th style="text-align:center">a</th>
+<th style="text-align:center">【b】</th>
+<th style="text-align:center">c</th>
+<th style="text-align:center">a</th>
+<th style="text-align:center">c</th>
+<th style="text-align:center">b</th>
+<th style="text-align:center">a</th>
+<th style="text-align:center">b</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">子串</td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center">a</td>
+<td style="text-align:center">b</td>
+<td style="text-align:center">c</td>
+<td style="text-align:center">a</td>
+<td style="text-align:center">【c】</td>
+</tr>
+<tr>
+<td style="text-align:center">索引</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">2</td>
+<td style="text-align:center">3</td>
+<td style="text-align:center">4</td>
+<td style="text-align:center">5</td>
+<td style="text-align:center">6</td>
+<td style="text-align:center">7</td>
+<td style="text-align:center">8</td>
+<td style="text-align:center">9</td>
+<td style="text-align:center">10</td>
+<td style="text-align:center">11</td>
+<td style="text-align:center">12</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>第三趟：i不变，再令子串向右移动。此趟比较从 i=6 和 j= 1开始，最终匹配成功。</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">主串</th>
+<th style="text-align:center">a</th>
+<th style="text-align:center">b</th>
+<th style="text-align:center">a</th>
+<th style="text-align:center">b</th>
+<th style="text-align:center">c</th>
+<th style="text-align:center">a</th>
+<th style="text-align:center">b</th>
+<th style="text-align:center">c</th>
+<th style="text-align:center">a</th>
+<th style="text-align:center">c</th>
+<th style="text-align:center">b</th>
+<th style="text-align:center">a</th>
+<th style="text-align:center">b</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">子串</td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center">a</td>
+<td style="text-align:center">b</td>
+<td style="text-align:center">c</td>
+<td style="text-align:center">a</td>
+<td style="text-align:center">c</td>
+</tr>
+<tr>
+<td style="text-align:center">索引</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">2</td>
+<td style="text-align:center">3</td>
+<td style="text-align:center">4</td>
+<td style="text-align:center">5</td>
+<td style="text-align:center">6</td>
+<td style="text-align:center">7</td>
+<td style="text-align:center">8</td>
+<td style="text-align:center">9</td>
+<td style="text-align:center">10</td>
+<td style="text-align:center">11</td>
+<td style="text-align:center">12</td>
+</tr>
+</tbody>
+</table>
+<p>可以看出，使用KMP算法，只需要3趟比较就能完成，而BF算法则需要6趟。为什么可以这样子移动呢？我们从第一趟的结果得知，主串的第2个字符为b，而子串的第一个字符为a，因此我们可以省去BF算法的第一趟比较，直接进入第三趟，也就是KMP算法的第二趟比较。再下一趟，我们知道主串的第4、5、6个字符是bca，这样我们又可以直接从i=6和j=1处开始比较。</p>
+<p>关键的问题是：每趟匹配过程中失配时，子串该向右滑多远，也就是如何求解下面的index数组的问题。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"> int index(string &amp;T, string &amp;P,int pos)  </div><div class="line">&#123;  </div><div class="line">    int i = pos;</div><div class="line">    int j = 0;    </div><div class="line">    int T_len = T.size();  </div><div class="line">    int P_len = P.size(); </div><div class="line">          </div><div class="line">    while (i &lt; T_len &amp;&amp; j &lt; P_len) &#123;  </div><div class="line">        if(j == -1 &amp;&amp; T[i] == P[j]) &#123;  //如果当前字符相同，则继续向后比较       </div><div class="line">            i++;  </div><div class="line">            j++;  </div><div class="line">        &#125; else &#123; </div><div class="line">            j = next[j];  </div><div class="line">        &#125;  </div><div class="line">    &#125;  </div><div class="line">  </div><div class="line">    if(j &gt;= P_len) &#123;</div><div class="line">        return i - P_len;  </div><div class="line">    &#125; else &#123;</div><div class="line">        return -1;  </div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="index数组的求解"><a href="#index数组的求解" class="headerlink" title="index数组的求解"></a>index数组的求解</h3><p>求解index数组之前我们要了解KMP算法的精髓，也就是部分匹配表（The Partial Match Table)。</p>
+<p>下面是一个模板串“abababca”的部分匹配表</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">char</th>
+<th style="text-align:center">a</th>
+<th style="text-align:center">b</th>
+<th style="text-align:center">a</th>
+<th style="text-align:center">b</th>
+<th style="text-align:center">a</th>
+<th style="text-align:center">b</th>
+<th style="text-align:center">c</th>
+<th style="text-align:center">a</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">index</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">2</td>
+<td style="text-align:center">3</td>
+<td style="text-align:center">4</td>
+<td style="text-align:center">5</td>
+<td style="text-align:center">6</td>
+<td style="text-align:center">7</td>
+</tr>
+<tr>
+<td style="text-align:center">value</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">2</td>
+<td style="text-align:center">3</td>
+<td style="text-align:center">4</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">1</td>
+</tr>
+</tbody>
+</table>
+<p><strong>字符串的最优前缀和最优后缀</strong><br>以上面的字符串为例，</p>
+
+  </section>
+
+  
+  
+</article>
+
+
+            <footer class="footer">
+
+    <span class="footer__copyright">&copy; 2014-2015. | 由<a href="https://hexo.io/">Hexo</a>强力驱动 | 主题<a href="https://github.com/someus/huno">Huno</a></span>
+    
+</footer>
+        </div>
+    </div>
+
+    <!-- js files -->
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/main.js"></script>
+    <script src="/js/scale.fix.js"></script>
+    
+
+    
+
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript"> 
+        $(document).ready(function(){
+            MathJax.Hub.Config({ 
+                tex2jax: {inlineMath: [['[latex]','[/latex]'], ['\\(','\\)']]} 
+            });
+        });
+    </script>
+
+
+    
+
+    <script src="/js/awesome-toc.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $.awesome_toc({
+                overlay: true,
+                contentId: "post-content",
+            });
+        });
+    </script>
+
+
+    
+    
+    <!--kill ie6 -->
+<!--[if IE 6]>
+  <script src="//letskillie6.googlecode.com/svn/trunk/2/zh_CN.js"></script>
+<![endif]-->
+
+</body>
+</html>
