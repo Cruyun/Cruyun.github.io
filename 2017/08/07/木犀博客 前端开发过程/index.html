@@ -38,7 +38,7 @@ clone/新建 项目仓库
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/4938344-569ad9fa8a0c3ed4.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/4938344-d41ab53899f617eb.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/4938344-e463517aa7e5ce1c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:updated_time" content="2017-09-23T16:19:24.000Z">
+<meta property="og:updated_time" content="2018-02-05T13:32:22.682Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="木犀博客 前端开发过程 | Cruyun's Blog">
 <meta name="twitter:description" content="前言：木犀博客是我的第二个团队项目，这篇博客记录一些从搭建环境到最终完成的过程中我遇到的问题及其解决方案、各种发现与总结(我的进度簿里面也会记录），持续更新。
@@ -336,6 +336,7 @@ classes that you can use:
 </ul>
 <p>两个函数如下：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">addTag() &#123;</div><div class="line">     var tag = this.newTag.trim();</div><div class="line">     if (tag &amp;&amp; this.tags.length &lt; 5) &#123;</div><div class="line">        this.tags.push(tag);</div><div class="line">        this.newTag = &quot;&quot;;</div><div class="line">     &#125; else if (this.tags.length &gt;= 5) &#123;</div><div class="line">        this.tip = true</div><div class="line">     &#125;</div><div class="line"> &#125;,</div><div class="line">removeTag(tag) &#123;</div><div class="line">     var index = this.tags.indexOf(tag);</div><div class="line">     this.tags.splice(index, 1);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h1 id="编辑一篇博客文章"><a href="#编辑一篇博客文章" class="headerlink" title="编辑一篇博客文章"></a>编辑一篇博客文章</h1><p>刚开始我想的太复杂了，像拿到文章，然后再编辑，其实只要 mounted 时拿到原来的博客，再按照发送那样写就可以了。于是我把原来的发送页面的部分拿出来作为编辑和发送页面的组件，只用传一个 flag 区别，通过flag 判断是否要去拿原来的博客，以及分别使用 method 和 API。</p>
 <hr>
 <h1 id="移动端"><a href="#移动端" class="headerlink" title="移动端"></a>移动端</h1><p>扎心了，又要适配各种手机和浏览器了</p>
 <p>写移动端才发现要复用组件，于是抛弃了CSS Modules。<code>&lt;style lang=&quot;scss&quot; module&gt;</code>把module删掉，template里面也不需要写<code>:class=&quot;$style.xxx&quot;</code>。写pc.scss和mobile.scss，再按需引入。（vue loader自带了CSS Modules，无需自己install）</p>
@@ -351,7 +352,8 @@ classes that you can use:
 </ul>
 </li>
 </ol>
-<p>————————— 9.23 更新 ——————–</p>
+<p>————————— 2.5 更新 ——————–</p>
+<p>希望改完首屏渲染的bug就能正式结束这个项目</p>
 
   </section>
 
