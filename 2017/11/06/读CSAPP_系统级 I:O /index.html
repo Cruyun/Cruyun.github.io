@@ -16,10 +16,8 @@
     
     
 
-    <meta name="description" content="文件Unix I/O
-创建的每个进程开始有三个打开的文件：标准输入 stdin（描述符为0）、标准输出 stdout（描述符为1）、标准错误 stderr（描述符为2）
+    <meta name="description" content="文件Unix I/O创建的每个进程开始有三个打开的文件：标准输入 stdin（描述符为0）、标准输出 stdout（描述符为1）、标准错误 stderr（描述符为2）
 Linux文件类型：
-
 普通文件 regular file
 
 文本文件 text file 
@@ -28,15 +26,13 @@ Linux文件类型：
 
 目录 diretory
 
-套接字 socket：用来与另一个进程进行跨网络通行的文件，从Linu">
+套接字 socket：用来与另一个进程进行跨网络通行的文件，从Linux角">
 <meta property="og:type" content="article">
 <meta property="og:title" content="CSAPP学习笔记_系统级 I/O | Cruyun's Blog">
 <meta property="og:url" content="https://Cruyun.github.io/2017/11/06/读CSAPP_系统级 I:O /index.html">
 <meta property="og:site_name" content="Cruyun's Blog">
-<meta property="og:description" content="文件Unix I/O
-创建的每个进程开始有三个打开的文件：标准输入 stdin（描述符为0）、标准输出 stdout（描述符为1）、标准错误 stderr（描述符为2）
+<meta property="og:description" content="文件Unix I/O创建的每个进程开始有三个打开的文件：标准输入 stdin（描述符为0）、标准输出 stdout（描述符为1）、标准错误 stderr（描述符为2）
 Linux文件类型：
-
 普通文件 regular file
 
 文本文件 text file 
@@ -45,14 +41,12 @@ Linux文件类型：
 
 目录 diretory
 
-套接字 socket：用来与另一个进程进行跨网络通行的文件，从Linu">
-<meta property="og:updated_time" content="2017-11-06T14:49:57.000Z">
+套接字 socket：用来与另一个进程进行跨网络通行的文件，从Linux角">
+<meta property="og:updated_time" content="2018-03-13T14:11:42.751Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="CSAPP学习笔记_系统级 I/O | Cruyun's Blog">
-<meta name="twitter:description" content="文件Unix I/O
-创建的每个进程开始有三个打开的文件：标准输入 stdin（描述符为0）、标准输出 stdout（描述符为1）、标准错误 stderr（描述符为2）
+<meta name="twitter:description" content="文件Unix I/O创建的每个进程开始有三个打开的文件：标准输入 stdin（描述符为0）、标准输出 stdout（描述符为1）、标准错误 stderr（描述符为2）
 Linux文件类型：
-
 普通文件 regular file
 
 文本文件 text file 
@@ -61,7 +55,7 @@ Linux文件类型：
 
 目录 diretory
 
-套接字 socket：用来与另一个进程进行跨网络通行的文件，从Linu">
+套接字 socket：用来与另一个进程进行跨网络通行的文件，从Linux角">
     
     
     
@@ -258,10 +252,8 @@ classes that you can use:
   </header>
 
   <section id="post-content" class="article-content post">
-    <h3 id="文件"><a href="#文件" class="headerlink" title="文件"></a>文件</h3><p><strong>Unix I/O</strong></p>
-<p>创建的每个进程开始有三个打开的文件：标准输入 stdin（描述符为0）、标准输出 stdout（描述符为1）、标准错误 stderr（描述符为2）</p>
-<p><strong>Linux文件类型：</strong></p>
-<ul>
+    <h1 id="文件"><a href="#文件" class="headerlink" title="文件"></a>文件</h1><h3 id="Unix-I-O"><a href="#Unix-I-O" class="headerlink" title="Unix I/O"></a>Unix I/O</h3><p>创建的每个进程开始有三个打开的文件：标准输入 stdin（描述符为0）、标准输出 stdout（描述符为1）、标准错误 stderr（描述符为2）</p>
+<h3 id="Linux文件类型："><a href="#Linux文件类型：" class="headerlink" title="Linux文件类型："></a>Linux文件类型：</h3><ul>
 <li><p>普通文件 regular file</p>
 <ul>
 <li>文本文件 text file </li>
@@ -272,15 +264,65 @@ classes that you can use:
 </li>
 <li>套接字 socket：用来与另一个进程进行跨网络通行的文件，从Linux角度来看，是一个有相应描述符的打开文件</li>
 </ul>
-<p><strong>open函数</strong></p>
-<p>将filename转换为一个文件描述符，并且返回描述符数字（总是在进程中当前没有打开的最小描述符）。</p>
-<p><code>int open(char *filename, int flags, mode_t mode)</code>成功则返回新文件描述符（正整数），出错为-1。所以用户通过 open 能够打开的文件得到的文件描述符的最小编号是3。</p>
-<p>flags参数是一个或更多位掩码的或，是用于指定打开文件操作模式的枚举常量。<br>mode_t mode是文件权限标志，mode_t类型指一个无符号八进制数，mode称为umask变量。</p>
-<p><strong>RIO提供的读写函数</strong></p>
-<p>RIO（Robust I/O，健壮的 I/O)包。RIO包中有专门的数据结构为每一个文件描述符都分配了相应的独立的读缓冲区，这样不同线程对不同文件描述符的读访问也就不会出现并发问题。</p>
-<ol>
-<li>无缓冲的输入输出函数：rio_readn、rio_writen</li>
-</ol>
+<h3 id="打开和关闭文件：-open函数"><a href="#打开和关闭文件：-open函数" class="headerlink" title="打开和关闭文件： open函数"></a>打开和关闭文件： open函数</h3><p> open 函数将 filename 转换为一个文件描述符，并且返回描述符数字（总是在进程中当前没有打开的最小描述符）。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">int open(char *filename, int flags, mode_t mode)</div></pre></td></tr></table></figure>
+<p>成功则返回新文件描述符（正整数），出错为-1。所以用户通过 open 能够打开的文件得到的文件描述符的最小编号是3。</p>
+<p>flags 参数是一个或更多位掩码的或，是用于指定打开文件操作模式的枚举常量。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">参数</th>
+<th style="text-align:left">意义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">O_RDONLY</td>
+<td style="text-align:left">只读</td>
+</tr>
+<tr>
+<td style="text-align:center">O_WRONLY</td>
+<td style="text-align:left">只写</td>
+</tr>
+<tr>
+<td style="text-align:center">O_RDWR</td>
+<td style="text-align:left">读写</td>
+</tr>
+<tr>
+<td style="text-align:center">O_CREAT</td>
+<td style="text-align:left">若不存在创建一个截断的空文件</td>
+</tr>
+<tr>
+<td style="text-align:center">O_TRUNC</td>
+<td style="text-align:left">若文件已存在就截断</td>
+</tr>
+<tr>
+<td style="text-align:center">O_APPEND</td>
+<td style="text-align:left">每次写之前将文件位置到文件结尾</td>
+</tr>
+</tbody>
+</table>
+<p>mode_t mode 是文件权限标志，mode_t 类型指一个无符号八进制数，mode 称为 umask 变量。</p>
+<p>关闭文件使用描述符即可关闭.</p>
+<p><code>int close(int fd)</code></p>
+<h3 id="RIO提供的读写函数"><a href="#RIO提供的读写函数" class="headerlink" title="RIO提供的读写函数"></a>RIO提供的读写函数</h3><p>RIO（Robust I/O，健壮的 I/O)包。RIO 包中有专门的数据结构为每一个文件描述符都分配了相应的独立的读缓冲区，这样不同线程对不同文件描述符的读访问也就不会出现并发问题。</p>
+<ul>
+<li><p><strong>无缓冲的输入输出函数</strong>：<code>rio_readn</code>、<code>rio_writen</code><br><strong>rio_readn 函数</strong></p>
+<ul>
+<li>从描述符 fd 的当前文件位置最多传送 n 个字节到内存位置 usrbuf；</li>
+<li>在遇到EOF 只能返回一个不足值。</li>
+</ul>
+<p><strong>rio_writen 函数</strong></p>
+<ul>
+<li>从内存位置 usrbuf 传送 n 个字节到描述符 fd；</li>
+<li>不返回不足值</li>
+</ul>
+</li>
+</ul>
+<p>对同一个描述符，可以任意调用<code>rio_readn</code>、<code>rio_writen</code>函数。</p>
+<ul>
+<li><strong>带缓冲的输入输出函数</strong>：</li>
+</ul>
 
   </section>
 
