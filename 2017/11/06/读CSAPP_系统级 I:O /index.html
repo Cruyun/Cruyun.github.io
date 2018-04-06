@@ -42,7 +42,7 @@ Linux文件类型：
 目录 diretory
 
 套接字 socket：用来与另一个进程进行跨网络通行的文件，从Linux角">
-<meta property="og:updated_time" content="2018-03-13T14:11:42.751Z">
+<meta property="og:updated_time" content="2018-04-05T05:04:55.107Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="CSAPP学习笔记_系统级 I/O | Cruyun's Blog">
 <meta name="twitter:description" content="文件Unix I/O创建的每个进程开始有三个打开的文件：标准输入 stdin（描述符为0）、标准输出 stdout（描述符为1）、标准错误 stderr（描述符为2）
@@ -307,7 +307,8 @@ classes that you can use:
 <p><code>int close(int fd)</code></p>
 <h3 id="RIO提供的读写函数"><a href="#RIO提供的读写函数" class="headerlink" title="RIO提供的读写函数"></a>RIO提供的读写函数</h3><p>RIO（Robust I/O，健壮的 I/O)包。RIO 包中有专门的数据结构为每一个文件描述符都分配了相应的独立的读缓冲区，这样不同线程对不同文件描述符的读访问也就不会出现并发问题。</p>
 <ul>
-<li><p><strong>无缓冲的输入输出函数</strong>：<code>rio_readn</code>、<code>rio_writen</code><br><strong>rio_readn 函数</strong></p>
+<li><p><strong>无缓冲的输入输出函数</strong>：<code>rio_readn</code>、<code>rio_writen</code></p>
+<p><strong>rio_readn 函数</strong></p>
 <ul>
 <li>从描述符 fd 的当前文件位置最多传送 n 个字节到内存位置 usrbuf；</li>
 <li>在遇到EOF 只能返回一个不足值。</li>
@@ -321,9 +322,25 @@ classes that you can use:
 </ul>
 <p>对同一个描述符，可以任意调用<code>rio_readn</code>、<code>rio_writen</code>函数。</p>
 <ul>
-<li><strong>带缓冲的输入输出函数</strong>：</li>
+<li><p><strong>带缓冲的输入输出函数</strong>：<code>rio_readlineb</code>、<code>rio_readnb</code></p>
+<p><code>rio_readlineb</code></p>
+<ul>
+<li>从一个内部读缓冲区复制一个文本行，当缓冲区变空时，会自动调用 read 重新填满缓冲区。</li>
 </ul>
-
+<p><code>rio_readnb</code></p>
+<ul>
+<li>用于既包含文本行也包含二进制数据的文件（如 HTTP 响应）</li>
+<li><p>是 rio_readln 的带缓冲版本</p>
+<p><code>rio_read</code></p>
+</li>
+<li><p>RIO 程序的核心函数</p>
+</li>
+<li>是 Linux read 函数的带缓冲版本。</li>
+</ul>
+</li>
+</ul>
+<p> 从标准输入复制一个文本文件到标准输出:</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">#include &quot;csapp.h&quot;</div><div class="line"></div><div class="line">int main</div><div class="line">&#123;</div><div class="line">	int n;</div><div class="line">	rio_t rio;</div><div class="line">	char buf[MAXLINE];</div><div class="line">	</div><div class="line">	// 将描述符 fd 与地址 rp（文件） 处的一个类型为 rio_t 的读缓冲区联系起来</div><div class="line">	Rio_readinitb(&amp;rio, STDIN_FIFENO);</div><div class="line">	</div><div class="line">	// 从文件读取下一个文本行，将它复制到内存位置 buf，</div><div class="line">	while(n = Rio_readlineb(&amp;rio, buf, MAXLINE) != 0)</div><div class="line">		Rio_writen(STDIN_FIFENO, buf, n);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
   </section>
 
   
