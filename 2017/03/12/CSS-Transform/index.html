@@ -7,7 +7,7 @@
     
 
     <title>
-      CSS-transform | Cruyun&#39;s Blog 
+      CSS-transform(2D) | Cruyun&#39;s Blog 
     </title>
 
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
@@ -16,28 +16,28 @@
     
     
 
-    <meta name="description" content="#CSS Transform（上：2D Transform）
-##前言及Transform 基本介绍MDN官方文档介绍：CSS中transform 属性允许你修改CSS可视化模型的坐标空间。通过transform，可以让元素进行移动（translate）、旋转（rotate）、缩放（scale）、拉伸（skew）。本文主要介绍2D transform的基本用法及其属性的原理。
-##浏览器兼容性">
+    <meta name="description" content="前言及Transform 基本介绍MDN官方文档介绍：CSS中transform 属性允许你修改CSS可视化模型的坐标空间。通过transform，可以让元素进行移动（translate）、旋转（rotate）、缩放（scale）、拉伸（skew）。本文主要介绍2D transform的基本用法及其属性的原理。
+浏览器兼容性
+Internet Explorer 10、Firefox、Opera 支">
 <meta property="og:type" content="article">
-<meta property="og:title" content="CSS-transform | Cruyun's Blog">
+<meta property="og:title" content="CSS-transform(2D) | Cruyun's Blog">
 <meta property="og:url" content="https://Cruyun.github.io/2017/03/12/CSS-Transform/index.html">
 <meta property="og:site_name" content="Cruyun's Blog">
-<meta property="og:description" content="#CSS Transform（上：2D Transform）
-##前言及Transform 基本介绍MDN官方文档介绍：CSS中transform 属性允许你修改CSS可视化模型的坐标空间。通过transform，可以让元素进行移动（translate）、旋转（rotate）、缩放（scale）、拉伸（skew）。本文主要介绍2D transform的基本用法及其属性的原理。
-##浏览器兼容性">
+<meta property="og:description" content="前言及Transform 基本介绍MDN官方文档介绍：CSS中transform 属性允许你修改CSS可视化模型的坐标空间。通过transform，可以让元素进行移动（translate）、旋转（rotate）、缩放（scale）、拉伸（skew）。本文主要介绍2D transform的基本用法及其属性的原理。
+浏览器兼容性
+Internet Explorer 10、Firefox、Opera 支">
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/4938344-041598d73a162de8.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/4938344-589dae39b502d326.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/4938344-e0bfcd2edcdedd55.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/4938344-242de94fa8b90ce1.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/4938344-5d205362d2069c34.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/4938344-30b97e0090aae128.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:updated_time" content="2017-12-04T12:52:34.000Z">
+<meta property="og:updated_time" content="2018-04-20T02:10:21.989Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="CSS-transform | Cruyun's Blog">
-<meta name="twitter:description" content="#CSS Transform（上：2D Transform）
-##前言及Transform 基本介绍MDN官方文档介绍：CSS中transform 属性允许你修改CSS可视化模型的坐标空间。通过transform，可以让元素进行移动（translate）、旋转（rotate）、缩放（scale）、拉伸（skew）。本文主要介绍2D transform的基本用法及其属性的原理。
-##浏览器兼容性">
+<meta name="twitter:title" content="CSS-transform(2D) | Cruyun's Blog">
+<meta name="twitter:description" content="前言及Transform 基本介绍MDN官方文档介绍：CSS中transform 属性允许你修改CSS可视化模型的坐标空间。通过transform，可以让元素进行移动（translate）、旋转（rotate）、缩放（scale）、拉伸（skew）。本文主要介绍2D transform的基本用法及其属性的原理。
+浏览器兼容性
+Internet Explorer 10、Firefox、Opera 支">
 <meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/4938344-041598d73a162de8.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
     
     
@@ -209,7 +209,7 @@ classes that you can use:
 
   <header class="post-header">
     
-    <h1 class="post-title">CSS-transform</h1>
+    <h1 class="post-title">CSS-transform(2D)</h1>
 
     
 
@@ -235,16 +235,14 @@ classes that you can use:
   </header>
 
   <section id="post-content" class="article-content post">
-    <p>#CSS Transform（上：2D Transform）</p>
-<p>##前言及Transform 基本介绍<br><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/transform" target="_blank" rel="external">MDN官方文档</a>介绍：CSS中transform 属性允许你修改CSS可视化模型的坐标空间。通过transform，可以让元素进行移动（translate）、旋转（rotate）、缩放（scale）、拉伸（skew）。本文主要介绍2D transform的基本用法及其属性的原理。</p>
-<p>##浏览器兼容性</p>
-<ul>
+    <h2 id="前言及Transform-基本介绍"><a href="#前言及Transform-基本介绍" class="headerlink" title="前言及Transform 基本介绍"></a>前言及Transform 基本介绍</h2><p><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/transform" target="_blank" rel="external">MDN官方文档</a>介绍：CSS中transform 属性允许你修改CSS可视化模型的坐标空间。通过transform，可以让元素进行移动（translate）、旋转（rotate）、缩放（scale）、拉伸（skew）。本文主要介绍2D transform的基本用法及其属性的原理。</p>
+<h2 id="浏览器兼容性"><a href="#浏览器兼容性" class="headerlink" title="浏览器兼容性"></a>浏览器兼容性</h2><ul>
 <li>Internet Explorer 10、Firefox、Opera 支持 transform 属性</li>
 <li>Internet Explorer 9 支持替代的 -ms-transform 属性（仅适用于 2D 变换）。</li>
 <li>Safari 和 Chrome 支持替代的 -webkit-transform 属性（3D 和 2D 变换）。</li>
 <li>Opera 只支持 2D 变换。</li>
 </ul>
-<p>##属性<br><strong>skew</strong></p>
+<h2 id="属性"><a href="#属性" class="headerlink" title="属性"></a>属性</h2><p><strong>skew</strong></p>
 <ul>
 <li><code>transform: skew(ax,ay)</code>元素在X轴和Y轴负方向以指定的角度拉伸</li>
 <li><code>transform: skew(ax)</code>元素在X轴负方向以指定的角度拉伸</li>
@@ -255,7 +253,8 @@ classes that you can use:
 <li><code>transform:  skew(20deg);</code></li>
 <li><code>transform:  skew(-20deg)</code><br><a href="http://codepen.io/cruyun/pen/wJdgdZ" target="_blank" rel="external">demo在此</a></li>
 </ul>
-<p><strong>rotate</strong><br>绕着<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/transform-origin" target="_blank" rel="external">Transform-origin</a>点顺时针旋转，中心点初始值为50% 50%</p>
+<p><strong>rotate</strong></p>
+<p>绕着<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/transform-origin" target="_blank" rel="external">Transform-origin</a>点顺时针旋转，中心点初始值为50% 50%</p>
 <ul>
 <li><code>transform: rotate(&lt;angle&gt;)</code></li>
 <li><code>transform: rotate(&#39;a&#39;turn)</code>角度为’a’ * 360°，’a’为小于1的数。例如<code>transform: rotate(0.5turn)</code>即<code>transform: rotate(180deg)</code><br><a href="http://codepen.io/cruyun/pen/mWmRxa" target="_blank" rel="external">demo在此</a></li>
@@ -289,11 +288,15 @@ classes that you can use:
 </li>
 </ul>
 <p>变换后的中心点坐标(x’, y’)   <img src="http://upload-images.jianshu.io/upload_images/4938344-e0bfcd2edcdedd55.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""><br>举个例子：<code>transform: matrix(1, 0, 0, 1, 20,  20)</code> 变换后的中心点横纵坐标:x’ = 1 <em> 0 + 0 </em> 0 + 20 = 20, y’ = 0 <em> 0 + 0 </em> 1 + 20 = 20，中心点坐标(0, 0) → (20, 20)<br><a href="http://codepen.io/cruyun/pen/wJdgNv" target="_blank" rel="external">demo</a><br>因为中心点坐标初始值为(0, 0)，则变换后的中心点坐标为(tx, ty)，相当于用向量[tx,ty]进行坐标变换。<code>transform:matrix(a, c, b, d, tx, ty)</code>的变换效果等同于<code>transform: translate(tx, ty)</code>, abcd的值与变换无关。<br>注意translate的参数需要单位，而matrix的参数的单位可省略。</p>
-<p>##Matrix与skew、scale、rotate、translate<br><strong>skew与matrix</strong>、<br><code>transform: matrix(1 tan(θy) tan(θx) 1 0 0)</code>的变换效果等同于<code>transform: skew( α + θx,  β + θy)</code><br>设元素的原坐标为(x, y)，进行matrix变换：<img src="http://upload-images.jianshu.io/upload_images/4938344-242de94fa8b90ce1.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<h2 id="Matrix与skew、scale、rotate、translate"><a href="#Matrix与skew、scale、rotate、translate" class="headerlink" title="Matrix与skew、scale、rotate、translate"></a>Matrix与skew、scale、rotate、translate</h2><p><strong>skew与matrix</strong>、</p>
+<p><code>transform: matrix(1 tan(θy) tan(θx) 1 0 0)</code>的变换效果等同于<code>transform: skew( α + θx,  β + θy)</code><br>设元素的原坐标为(x, y)，进行matrix变换：<img src="http://upload-images.jianshu.io/upload_images/4938344-242de94fa8b90ce1.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
 <p>变换后的横坐标x’ = x+y<em>tan(θx) ，纵坐标y’ = x</em>tan(θy)+y</p>
-<p><strong>scale与matrix</strong><br><code>transform: matrix(sx 0 0 sy 0 0)</code>的变换效果等同于 <code>transform: scale(sx, sy)</code><br>设元素的原坐标为(x, y)，进行matrix变换：<img src="http://upload-images.jianshu.io/upload_images/4938344-5d205362d2069c34.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""><br>变换后的元素坐标为(sx <em> x; sy </em> y)，即x和y变为原来的sx、sy倍。</p>
-<p><strong>rotate与matrix</strong><br><code>transform: matrix(cosα sinα -sinα cosα 0 0)</code>的变换效果等同于<code>transform: rotate(α)</code><br>设元素的原坐标为(x, y)，进行matrix变换：<img src="http://upload-images.jianshu.io/upload_images/4938344-30b97e0090aae128.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""><br>变换后的横纵坐标分别为x’ = x <em> cosα - y </em> sinα, y’ = x <em> sinα + y </em> cosα</p>
-<p><strong>translate与matrix</strong><br><code>transform: matrix(1 0 0 1 tx ty)</code>的变换效果等同于<code>transform: translate(tx, ty)</code>,上文已证。</p>
+<p><strong>scale与matrix</strong></p>
+<p><code>transform: matrix(sx 0 0 sy 0 0)</code>的变换效果等同于 <code>transform: scale(sx, sy)</code><br>设元素的原坐标为(x, y)，进行matrix变换：<img src="http://upload-images.jianshu.io/upload_images/4938344-5d205362d2069c34.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""><br>变换后的元素坐标为(sx <em> x; sy </em> y)，即x和y变为原来的sx、sy倍。</p>
+<p><strong>rotate与matrix</strong></p>
+<p><code>transform: matrix(cosα sinα -sinα cosα 0 0)</code>的变换效果等同于<code>transform: rotate(α)</code><br>设元素的原坐标为(x, y)，进行matrix变换：<img src="http://upload-images.jianshu.io/upload_images/4938344-30b97e0090aae128.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""><br>变换后的横纵坐标分别为x’ = x <em> cosα - y </em> sinα, y’ = x <em> sinα + y </em> cosα</p>
+<p><strong>translate与matrix</strong></p>
+<p><code>transform: matrix(1 0 0 1 tx ty)</code>的变换效果等同于<code>transform: translate(tx, ty)</code>,上文已证。</p>
 
   </section>
 
