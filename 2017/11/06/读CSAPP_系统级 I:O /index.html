@@ -42,7 +42,7 @@ Linux文件类型：
 目录 diretory
 
 套接字 socket：用来与另一个进程进行跨网络通行的文件，从Linux角">
-<meta property="og:updated_time" content="2018-04-05T05:04:55.107Z">
+<meta property="og:updated_time" content="2018-05-01T06:09:54.004Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="CSAPP学习笔记_系统级 I/O | Cruyun's Blog">
 <meta name="twitter:description" content="文件Unix I/O创建的每个进程开始有三个打开的文件：标准输入 stdin（描述符为0）、标准输出 stdout（描述符为1）、标准错误 stderr（描述符为2）
@@ -341,6 +341,14 @@ classes that you can use:
 </ul>
 <p> 从标准输入复制一个文本文件到标准输出:</p>
  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">#include &quot;csapp.h&quot;</div><div class="line"></div><div class="line">int main</div><div class="line">&#123;</div><div class="line">	int n;</div><div class="line">	rio_t rio;</div><div class="line">	char buf[MAXLINE];</div><div class="line">	</div><div class="line">	// 将描述符 fd 与地址 rp（文件） 处的一个类型为 rio_t 的读缓冲区联系起来</div><div class="line">	Rio_readinitb(&amp;rio, STDIN_FIFENO);</div><div class="line">	</div><div class="line">	// 从文件读取下一个文本行，将它复制到内存位置 buf，</div><div class="line">	while(n = Rio_readlineb(&amp;rio, buf, MAXLINE) != 0)</div><div class="line">		Rio_writen(STDIN_FIFENO, buf, n);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="读取文件元数据"><a href="#读取文件元数据" class="headerlink" title="读取文件元数据"></a>读取文件元数据</h3><p> 应用程序调用 <code>stat</code> 和 <code>fstat</code>函数，检索文件元数据</p>
+<ol>
+<li><code>int stat(const char* filename, struct stat *buf)</code></li>
+</ol>
+<ol>
+<li><code>int fast(int fd, struct *buf)</code></li>
+</ol>
+
   </section>
 
   
