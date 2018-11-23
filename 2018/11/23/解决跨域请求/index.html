@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+
+    
+
+    <title>
+      解决跨域问题 | Cruyun&#39;s Blog 
+    </title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    
+      <meta name="author" content="Cruyun">
+    
+    
+
+    <meta name="description" content="同源策略 (Same-origin Policy )AJAX之所以需要“跨域”，罪魁祸首就是浏览器的 同源策略。即，一个页面的AJAX只能获取这个页面相同源或者相同域的数据。 如何叫“同源”或者“同域”呢？——协议、域名、端口号都必须相同。
+当跨域请求时，一般都会看到这个错误：
+1XMLHttpRequest cannot load http://xxxxx.com. No &amp;apos;Acces">
+<meta property="og:type" content="article">
+<meta property="og:title" content="解决跨域问题 | Cruyun's Blog">
+<meta property="og:url" content="https://Cruyun.github.io/2018/11/23/解决跨域请求/index.html">
+<meta property="og:site_name" content="Cruyun's Blog">
+<meta property="og:description" content="同源策略 (Same-origin Policy )AJAX之所以需要“跨域”，罪魁祸首就是浏览器的 同源策略。即，一个页面的AJAX只能获取这个页面相同源或者相同域的数据。 如何叫“同源”或者“同域”呢？——协议、域名、端口号都必须相同。
+当跨域请求时，一般都会看到这个错误：
+1XMLHttpRequest cannot load http://xxxxx.com. No &amp;apos;Acces">
+<meta property="og:updated_time" content="2018-11-23T15:17:59.722Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="解决跨域问题 | Cruyun's Blog">
+<meta name="twitter:description" content="同源策略 (Same-origin Policy )AJAX之所以需要“跨域”，罪魁祸首就是浏览器的 同源策略。即，一个页面的AJAX只能获取这个页面相同源或者相同域的数据。 如何叫“同源”或者“同域”呢？——协议、域名、端口号都必须相同。
+当跨域请求时，一般都会看到这个错误：
+1XMLHttpRequest cannot load http://xxxxx.com. No &amp;apos;Acces">
+    
+    
+    
+      <link rel="icon" type="image/x-icon" href="/huno/favicon.ico">
+    
+    <link rel="stylesheet" href="/css/uno.css">
+    <link rel="stylesheet" href="/css/highlight.css">
+    <link rel="stylesheet" href="/css/archive.css">
+    <link rel="stylesheet" href="/css/china-social-icon.css">
+
+</head>
+<body>
+
+    <span class="mobile btn-mobile-menu">
+        <i class="icon icon-list btn-mobile-menu__icon"></i>
+        <i class="icon icon-x-circle btn-mobile-close__icon hidden"></i>
+    </span>
+
+    
+
+<header class="panel-cover panel-cover--collapsed">
+
+
+  <div class="panel-main">
+
+  
+    <div class="panel-main__inner panel-inverted">
+    <div class="panel-main__content">
+
+        
+        <a href="/" title="link to homepage for Cruyun&#39;s Blog"><img src="https://avatars3.githubusercontent.com/u/24372759?s=460&amp;v=4" width="80" alt="Cruyun&#39;s Blog logo" class="panel-cover__logo logo" /></a>
+        
+
+        <h1 class="panel-cover__title panel-title"><a href="/" title="link to homepage">Cruyun&#39;s Blog</a></h1>
+        <hr class="panel-cover__divider" />
+
+        
+        <p class="panel-cover__description">
+          Talk is cheap, show you my code
+        </p>
+        <hr class="panel-cover__divider panel-cover__divider--secondary" />
+        
+
+        <div class="navigation-wrapper">
+
+          <nav class="cover-navigation cover-navigation--primary">
+            <ul class="navigation">
+
+              
+                
+                <li class="navigation__item"><a href="/#blog" title="" class="blog-button">首页</a></li>
+              
+                
+                <li class="navigation__item"><a href="/about" title="" class="">关于</a></li>
+              
+                
+                <li class="navigation__item"><a href="/archive" title="" class="">归档</a></li>
+              
+
+            </ul>
+          </nav>
+
+          <!-- ----------------------------
+To add a new social icon simply duplicate one of the list items from below
+and change the class in the <i> tag to match the desired social network
+and then add your link to the <a>. Here is a full list of social network
+classes that you can use:
+
+    icon-social-500px
+    icon-social-behance
+    icon-social-delicious
+    icon-social-designer-news
+    icon-social-deviant-art
+    icon-social-digg
+    icon-social-dribbble
+    icon-social-facebook
+    icon-social-flickr
+    icon-social-forrst
+    icon-social-foursquare
+    icon-social-github
+    icon-social-google-plus
+    icon-social-hi5
+    icon-social-instagram
+    icon-social-lastfm
+    icon-social-linkedin
+    icon-social-medium
+    icon-social-myspace
+    icon-social-path
+    icon-social-pinterest
+    icon-social-rdio
+    icon-social-reddit
+    icon-social-skype
+    icon-social-spotify
+    icon-social-stack-overflow
+    icon-social-steam
+    icon-social-stumbleupon
+    icon-social-treehouse
+    icon-social-tumblr
+    icon-social-twitter
+    icon-social-vimeo
+    icon-social-xbox
+    icon-social-yelp
+    icon-social-youtube
+    icon-social-zerply
+    icon-mail
+
+-------------------------------->
+
+<!-- add social info here -->
+
+
+
+<nav class="cover-navigation navigation--social">
+  <ul class="navigation">
+
+    
+      <!-- Github -->
+      <li class="navigation__item">
+        <a href="https://github.com/Cruyun" title="Huno on GitHub">
+          <i class='icon icon-social-github'></i>
+          <span class="label">GitHub</span>
+        </a>
+      </li>
+    
+
+    <!-- China social icon -->
+    <!--
+
+      <li class="navigation__item">
+        <a href="" title="">
+          <i class='icon cs-icon-douban'></i>
+          <span class="label">Douban</span>
+        </a>
+      </li>
+
+      <li class="navigation__item">
+        <a href="" title="">
+          <i class='icon cs-icon-weibo'></i>
+          <span class="label">Weibo</span>
+        </a>
+      </li>
+
+    -->
+
+
+
+  </ul>
+</nav>
+
+
+
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="panel-cover--overlay"></div>
+  </div>
+</header>
+
+    <div class="content-wrapper">
+        <div class="content-wrapper__inner entry">
+            
+
+<article class="post-container post-container--single">
+
+  <header class="post-header">
+    
+    <h1 class="post-title">解决跨域问题</h1>
+
+    
+
+    <div class="post-meta">
+      <time datetime="2018-11-23" class="post-meta__date date">2018-11-23</time> 
+
+      <span class="post-meta__tags tags">
+
+          
+
+          
+             &#8226; 标签:
+            <font class="tags">
+              <a class="tags-link" href="/tags/Browser/">Browser</a>
+            </font>
+          
+
+      </span>
+    </div>
+    
+    
+
+  </header>
+
+  <section id="post-content" class="article-content post">
+    <h2 id="同源策略-Same-origin-Policy"><a href="#同源策略-Same-origin-Policy" class="headerlink" title="同源策略 (Same-origin Policy )"></a>同源策略 (Same-origin Policy )</h2><p>AJAX之所以需要“跨域”，罪魁祸首就是浏览器的 同源策略。即，一个页面的AJAX只能获取这个页面相同源或者相同域的数据。 如何叫“同源”或者“同域”呢？——协议、域名、端口号都必须相同。</p>
+<p>当跨域请求时，一般都会看到这个错误：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">XMLHttpRequest cannot load http://xxxxx.com. No &apos;Access-Control-Allow-Origin&apos; header is present on the requested resource. Origin &apos;http://localhost&apos; is therefore not allowed access.</div></pre></td></tr></table></figure>
+<h3 id="JSONP"><a href="#JSONP" class="headerlink" title="JSONP"></a>JSONP</h3><p>JSONP(JSON with Padding) 是一种跨域请求方式。主要原理是利用了script 标签可以跨域请求的特性，由其 src 属性发送请求到服务器，服务器返回 JavaScript 代码，浏览器接受响应，然后直接执行，这和通过 script 标签引用外部文件的原理是一样的。</p>
+<p>JSONP由两部分组成：<em>回调函数和数据</em>，回调函数一般是在浏览器控制，作为参数发往服务器端（当然，你也可以固定回调函数的名字，但客户端和服务器端的名称一定要一致）。当服务器响应时，服务器端就会把该函数和数据拼成字符串返回。 </p>
+<p>JSONP的请求过程：</p>
+<ol>
+<li>请求阶段：浏览器创建一个 script 标签，并给其src 赋值(类似 <code>http://example.com/api/?callback=jsonpCallback</code> ）。</li>
+<li>发送请求：当给script的src赋值时，浏览器就会发起一个请求。</li>
+<li>数据响应：服务端将要返回的数据作为参数和函数名称拼接在一起(格式类似”jsonpCallback({name: ‘abc’})”)返回。当浏览器接收到了响应数据，由于发起请求的是 script，所以相当于直接调用 jsonpCallback 方法，并且传入了一个参数。</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line">// 包装在一个立即调用的函数表达式</div><div class="line">(function () &#123;</div><div class="line">  var _callbacks = 0</div><div class="line">// 给回调函数添加唯一标知的 id</div><div class="line">  window.jsonp = function (url, callback) &#123;</div><div class="line">    var id = &apos;jsonp_cb_&apos; + _callbacks,</div><div class="line">        existing = document.scripts[0],</div><div class="line">// 创建script标签并加入到页面中</div><div class="line">        script = document.createElement(&apos;script&apos;)</div><div class="line"></div><div class="line">    script.src = url + (~url.indexOf(&apos;?&apos;) ? &apos;&amp;&apos; : &apos;?&apos;) + &apos;callback=&apos; + id</div><div class="line">    existing.parentNode.insertBefore(script, existing)</div><div class="line"></div><div class="line">//创建jsonp回调函数</div><div class="line">    window[id] = function (data) &#123;</div><div class="line">// 因为 script 标签的 src 属性只在第一次设置的时候起作用，导致 script 标签没法重用，所以每次完成操作之后要移除</div><div class="line">      script.parentNode.removeChild(script)</div><div class="line">      callback(data)</div><div class="line">      delete window[id]</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    _callbacks += 1</div><div class="line">  &#125;</div><div class="line">&#125;())</div></pre></td></tr></table></figure>
+<p>这段代码将一个jsonp函数添加到window，windo接受要发送请求的URL，一旦此请求完成后回复exectue。 指定的回调附加到window，因此请求的脚本在查找和调用它时不会出现问题。 回调完成后，外部资源和 window 新附加的回调函数都将被删除。</p>
+<p>JSONP 使用简单且兼容性不错，但是只限于 get 请求。</p>
+<p>当然，这一段原生的 JSONP 如果要追求完整，还可以添加处理成功或失败之后的操作以及处理超时等 error 的操作。</p>
+<h2 id="CORS-Cross-Origin-Resource-Sharing"><a href="#CORS-Cross-Origin-Resource-Sharing" class="headerlink" title="CORS (Cross-Origin Resource Sharing)"></a>CORS (Cross-Origin Resource Sharing)</h2><p>跨源资源共享（CORS）是一种允许来自浏览器的跨域通信的W3C规范。 通过构建在XMLHttpRequest对象之上，CORS允许开发人员使用与同域请求相同的语言。</p>
+<p>CORS的用例很简单。 比如网站alice.com有一些网站bob.com想要访问的数据。 传统上，在浏览器的相同原始策略下不允许这种类型的请求。 但是，通过支持CORS请求，alice.com可以添加一些允许bob.com访问数据的特殊响应标头。</p>
+<p>从这个例子可以看出，CORS支持需要服务器和客户端之间的协调。</p>
+<p>Chrome，Firefox，Opera和Safari都使用<code>XMLHttpRequest2</code>对象。 Internet Explorer使用类似的<code>XDomainRequest</code>对象，该对象的工作方式与<code>XMLHttpRequest</code>对应方式大致相同，但添加了额外的安全预防措施。</p>
+<ul>
+<li><a href="https://sacha.me/articles/jsonp/" target="_blank" rel="external">Creating a JSONP Function</a></li>
+<li><a href="https://juejin.im/entry/589921640ce46300560ef894" target="_blank" rel="external">原生 JavaScript 实现 AJAX、JSONP</a></li>
+<li><a href="http://schock.net/articles/2013/02/05/how-jsonp-really-works-examples/" target="_blank" rel="external">So how does JSONP really work? Some simple examples. | Jason Schock</a></li>
+</ul>
+
+  </section>
+
+  
+  
+</article>
+
+
+            <footer class="footer">
+
+    <span class="footer__copyright">&copy; 2014-2015. | 由<a href="https://hexo.io/">Hexo</a>强力驱动 | 主题<a href="https://github.com/someus/huno">Huno</a></span>
+    
+</footer>
+        </div>
+    </div>
+
+    <!-- js files -->
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/main.js"></script>
+    <script src="/js/scale.fix.js"></script>
+    
+
+    
+
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript"> 
+        $(document).ready(function(){
+            MathJax.Hub.Config({ 
+                tex2jax: {inlineMath: [['[latex]','[/latex]'], ['\\(','\\)']]} 
+            });
+        });
+    </script>
+
+
+    
+
+    <script src="/js/awesome-toc.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $.awesome_toc({
+                overlay: true,
+                contentId: "post-content",
+            });
+        });
+    </script>
+
+
+    
+    
+    <!--kill ie6 -->
+<!--[if IE 6]>
+  <script src="//letskillie6.googlecode.com/svn/trunk/2/zh_CN.js"></script>
+<![endif]-->
+
+</body>
+</html>
