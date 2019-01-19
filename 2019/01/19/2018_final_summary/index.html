@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+
+    
+
+    <title>
+      2018年终总结 | Cruyun&#39;s Blog 
+    </title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    
+      <meta name="author" content="Cruyun">
+    
+    
+
+    <meta name="description" content="前端的学习这一年，和16级的同学一起承担团队的主要项目，包括木犀内外、学而、华师匣子，技术栈也从 Vue 转变到 React。
+木犀内外一直在维护，经常会有莫名其妙的 bug 出来，现在看我以前的代码真的是不忍直视。代码风格、函数抽象都不好，纯粹是为了功能而写代码，review 起来很难受。刚开始要我重构学而的时候，第一感觉就是迷茫，因为看不懂旧代码。大致分清楚模块、项目结构之后，还是不理解内容，">
+<meta property="og:type" content="article">
+<meta property="og:title" content="2018年终总结 | Cruyun's Blog">
+<meta property="og:url" content="https://Cruyun.github.io/2019/01/19/2018_final_summary/index.html">
+<meta property="og:site_name" content="Cruyun's Blog">
+<meta property="og:description" content="前端的学习这一年，和16级的同学一起承担团队的主要项目，包括木犀内外、学而、华师匣子，技术栈也从 Vue 转变到 React。
+木犀内外一直在维护，经常会有莫名其妙的 bug 出来，现在看我以前的代码真的是不忍直视。代码风格、函数抽象都不好，纯粹是为了功能而写代码，review 起来很难受。刚开始要我重构学而的时候，第一感觉就是迷茫，因为看不懂旧代码。大致分清楚模块、项目结构之后，还是不理解内容，">
+<meta property="og:updated_time" content="2019-01-19T02:16:34.721Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="2018年终总结 | Cruyun's Blog">
+<meta name="twitter:description" content="前端的学习这一年，和16级的同学一起承担团队的主要项目，包括木犀内外、学而、华师匣子，技术栈也从 Vue 转变到 React。
+木犀内外一直在维护，经常会有莫名其妙的 bug 出来，现在看我以前的代码真的是不忍直视。代码风格、函数抽象都不好，纯粹是为了功能而写代码，review 起来很难受。刚开始要我重构学而的时候，第一感觉就是迷茫，因为看不懂旧代码。大致分清楚模块、项目结构之后，还是不理解内容，">
+    
+    
+    
+      <link rel="icon" type="image/x-icon" href="/huno/favicon.ico">
+    
+    <link rel="stylesheet" href="/css/uno.css">
+    <link rel="stylesheet" href="/css/highlight.css">
+    <link rel="stylesheet" href="/css/archive.css">
+    <link rel="stylesheet" href="/css/china-social-icon.css">
+
+</head>
+<body>
+
+    <span class="mobile btn-mobile-menu">
+        <i class="icon icon-list btn-mobile-menu__icon"></i>
+        <i class="icon icon-x-circle btn-mobile-close__icon hidden"></i>
+    </span>
+
+    
+
+<header class="panel-cover panel-cover--collapsed">
+
+
+  <div class="panel-main">
+
+  
+    <div class="panel-main__inner panel-inverted">
+    <div class="panel-main__content">
+
+        
+        <a href="/" title="link to homepage for Cruyun&#39;s Blog"><img src="https://avatars3.githubusercontent.com/u/24372759?s=460&amp;v=4" width="80" alt="Cruyun&#39;s Blog logo" class="panel-cover__logo logo" /></a>
+        
+
+        <h1 class="panel-cover__title panel-title"><a href="/" title="link to homepage">Cruyun&#39;s Blog</a></h1>
+        <hr class="panel-cover__divider" />
+
+        
+        <p class="panel-cover__description">
+          Talk is cheap, show you my code
+        </p>
+        <hr class="panel-cover__divider panel-cover__divider--secondary" />
+        
+
+        <div class="navigation-wrapper">
+
+          <nav class="cover-navigation cover-navigation--primary">
+            <ul class="navigation">
+
+              
+                
+                <li class="navigation__item"><a href="/#blog" title="" class="blog-button">首页</a></li>
+              
+                
+                <li class="navigation__item"><a href="/about" title="" class="">关于</a></li>
+              
+                
+                <li class="navigation__item"><a href="/archive" title="" class="">归档</a></li>
+              
+
+            </ul>
+          </nav>
+
+          <!-- ----------------------------
+To add a new social icon simply duplicate one of the list items from below
+and change the class in the <i> tag to match the desired social network
+and then add your link to the <a>. Here is a full list of social network
+classes that you can use:
+
+    icon-social-500px
+    icon-social-behance
+    icon-social-delicious
+    icon-social-designer-news
+    icon-social-deviant-art
+    icon-social-digg
+    icon-social-dribbble
+    icon-social-facebook
+    icon-social-flickr
+    icon-social-forrst
+    icon-social-foursquare
+    icon-social-github
+    icon-social-google-plus
+    icon-social-hi5
+    icon-social-instagram
+    icon-social-lastfm
+    icon-social-linkedin
+    icon-social-medium
+    icon-social-myspace
+    icon-social-path
+    icon-social-pinterest
+    icon-social-rdio
+    icon-social-reddit
+    icon-social-skype
+    icon-social-spotify
+    icon-social-stack-overflow
+    icon-social-steam
+    icon-social-stumbleupon
+    icon-social-treehouse
+    icon-social-tumblr
+    icon-social-twitter
+    icon-social-vimeo
+    icon-social-xbox
+    icon-social-yelp
+    icon-social-youtube
+    icon-social-zerply
+    icon-mail
+
+-------------------------------->
+
+<!-- add social info here -->
+
+
+
+<nav class="cover-navigation navigation--social">
+  <ul class="navigation">
+
+    
+      <!-- Github -->
+      <li class="navigation__item">
+        <a href="https://github.com/Cruyun" title="Huno on GitHub">
+          <i class='icon icon-social-github'></i>
+          <span class="label">GitHub</span>
+        </a>
+      </li>
+    
+
+    <!-- China social icon -->
+    <!--
+
+      <li class="navigation__item">
+        <a href="" title="">
+          <i class='icon cs-icon-douban'></i>
+          <span class="label">Douban</span>
+        </a>
+      </li>
+
+      <li class="navigation__item">
+        <a href="" title="">
+          <i class='icon cs-icon-weibo'></i>
+          <span class="label">Weibo</span>
+        </a>
+      </li>
+
+    -->
+
+
+
+  </ul>
+</nav>
+
+
+
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="panel-cover--overlay"></div>
+  </div>
+</header>
+
+    <div class="content-wrapper">
+        <div class="content-wrapper__inner entry">
+            
+
+<article class="post-container post-container--single">
+
+  <header class="post-header">
+    
+    <h1 class="post-title">2018年终总结</h1>
+
+    
+
+    <div class="post-meta">
+      <time datetime="2019-01-19" class="post-meta__date date">2019-01-19</time> 
+
+      <span class="post-meta__tags tags">
+
+          
+
+          
+             &#8226; 标签:
+            <font class="tags">
+              <a class="tags-link" href="/tags/随笔/">随笔</a>
+            </font>
+          
+
+      </span>
+    </div>
+    
+    
+
+  </header>
+
+  <section id="post-content" class="article-content post">
+    <h2 id="前端的学习"><a href="#前端的学习" class="headerlink" title="前端的学习"></a>前端的学习</h2><p>这一年，和16级的同学一起承担团队的主要项目，包括木犀内外、学而、华师匣子，技术栈也从 Vue 转变到 React。</p>
+<p>木犀内外一直在维护，经常会有莫名其妙的 bug 出来，现在看我以前的代码真的是不忍直视。代码风格、函数抽象都不好，纯粹是为了功能而写代码，review 起来很难受。刚开始要我重构学而的时候，第一感觉就是迷茫，因为看不懂旧代码。大致分清楚模块、项目结构之后，还是不理解内容，甚至觉得学长的代码写的好高深我竟无从下手改2333。现在回想起来，我意识到，重构一个项目，首先要去熟悉项目结构、学习它的技术栈，知道未完成的功能以及完善已有的旧功能。然后是大二下以及暑假写华师匣子，就去学了 React。应该是我自己的问题，以前的项目写的都像 C 语言， React 就让我更加强烈地感受到JavaScript style。</p>
+<p>不仅是项目上，这一年也尝试去深入理解了算法、数据结构，虽然依然很菜。写LeetCode 大部分都不轻松，之前 gyf 有跟我讲，其实写不出来的时候，去看别人的答案，尽量的不看他的代码，学习他的思路然后自己写代码，慢慢的就去看更核心的思路，自己再去实现代码，培养算法思想这样。</p>
+<p>准备面试学到了很多，这种集中式的学习有点像高考，效率高，而且逼迫自己去思考、总结更深层次的内容，不像以前一样会用就行了那种小白的无脑状态。面试失败也有好处，让我意识到算法、代码能力方面的不足，总的来说还是题目做得少。</p>
+<h2 id="和团队的日常"><a href="#和团队的日常" class="headerlink" title="和团队的日常"></a>和团队的日常</h2><p>接过接力棒才知道原来管理层也很辛苦，上至团队规划，下至新人任务，好的是没出什么大问题，还是按着正常的方向走，不过团队文化、凝聚力没有以前那么活泼生动了（以前什么时候活泼过❓），大家彼此没有以前一样谈笑风生的感觉，距离感比较强，所以有一丢丢失望。</p>
+<p>作为组长，虽然没有那么严格的花精力 push 17级的同学，但他们自己学习有自己的想法我感觉还是蛮好的，这里实名表扬他们。现在已经交接给下一级我很放心，希望他们好好听老板的话，自己和团队都加油💪</p>
+<hr>
+<p>最后，祝自己早日摆脱迷茫，找到满意的方向。</p>
+
+  </section>
+
+  
+  
+</article>
+
+
+            <footer class="footer">
+
+    <span class="footer__copyright">&copy; 2014-2015. | 由<a href="https://hexo.io/">Hexo</a>强力驱动 | 主题<a href="https://github.com/someus/huno">Huno</a></span>
+    
+</footer>
+        </div>
+    </div>
+
+    <!-- js files -->
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/main.js"></script>
+    <script src="/js/scale.fix.js"></script>
+    
+
+    
+
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript"> 
+        $(document).ready(function(){
+            MathJax.Hub.Config({ 
+                tex2jax: {inlineMath: [['[latex]','[/latex]'], ['\\(','\\)']]} 
+            });
+        });
+    </script>
+
+
+    
+
+    <script src="/js/awesome-toc.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $.awesome_toc({
+                overlay: true,
+                contentId: "post-content",
+            });
+        });
+    </script>
+
+
+    
+    
+    <!--kill ie6 -->
+<!--[if IE 6]>
+  <script src="//letskillie6.googlecode.com/svn/trunk/2/zh_CN.js"></script>
+<![endif]-->
+
+</body>
+</html>
